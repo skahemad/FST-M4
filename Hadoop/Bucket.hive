@@ -1,0 +1,6 @@
+CREATE TABLE zipcodes (RecordNumber int, Country string, City string, Zipcode int) PARTITIONED BY (state string) CLUSTERED BY (Zipcode) INTO 32 BUCKETS ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
+
+LOAD DATA LOCAL INPATH '/resources/zipcodes.csv' INTO TABLE zipcodes;
+
+SELECT * FROM zipcodes WHERE state='PR' and zipcode=704;
+
