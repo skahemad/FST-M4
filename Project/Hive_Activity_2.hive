@@ -1,0 +1,1 @@
+select count(*) from episodeIV_dialouges_table where dialouges LIKE '%Luke%' or dialouges LIKE '%luke%';

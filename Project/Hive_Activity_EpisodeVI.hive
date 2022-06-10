@@ -1,0 +1,4 @@
+CREATE TABLE episodeVI_dialouges_table (character_name STRING, dialouges STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+LOAD DATA LOCAL INPATH '/episodeVI_dialouges.txt' INTO TABLE episodeVI_dialouges_table;
+INSERT OVERWRITE DIRECTORY '/user/root/results/hive/episodeVI_result' ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' select character_name,count(*) as cnt from episodeVI_dialouges_table GROUP BY character_name ORDER BY cnt DESC;
+INSERT OVERWRITE LOCAL DIRECTORY '/hive/episodeVI_result' ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' select character_name,count(*) as cnt from episodeVI_dialouges_table GROUP BY character_name ORDER BY cnt DESC;
